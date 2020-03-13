@@ -3,6 +3,15 @@
 
 ***
 
+### Table of Contents
+1. [Kanban Functionality](#Kanban-Functionality)
+2. [Project Structure](#Project-Structure)
+3. [Extra Features](#Extra-Features)
+4. [Installation Guide](#Installation-Guide)
+5. [Unit Testing](#Unit-Testing)
+
+***
+
 ### Kanban Functionality
 
 **Headers**
