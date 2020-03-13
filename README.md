@@ -1,6 +1,8 @@
 # quickanban
 ## Web Application Assignment - CS162
 
+***
+
 ### Kanban Functionality
 
 **Headers**
@@ -13,13 +15,17 @@
 2. Moving tasks to different states
 3. Deleting tasks
 
+***
+
 ### Project Structure
 
 
+***
 
 ### Extra Features
 
 
+***
 
 ### Installation Guide
 
@@ -32,6 +38,8 @@ pip3 install -r requirements.txt
 export FLASK_APP=app.py
 flask run
 ```
+
+***
 
 ### Unit Testing
 
