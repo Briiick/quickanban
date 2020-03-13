@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Quickanban</title>
+        <meta name="author" content="Alexander Bricken">
+        <meta name="description" content="A Quick Kanban Board">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+
+    <body>
+        <h1>QuicKanban</h1>
+        
+        
+        <form action='/add' method='POST'>
+            <label>Input a new task:</label>
+            <input type="text" id="new-task"><br>
+            <input type="button" id="task-add" value="Submit">
+        </form>
+
+        <hr>
+
+            <div class="Board">
+                <div class="Column" id="notstarted">
+                    <h3>Not Started</h3>
+                    <div class="Task" id="task1" draggable="true">Wash Dishes</div>
+                    <div class="Task" id="task2" draggable="true">Make Bed</div>
+                </div>
+                <div class="Column" id="inprogress">
+                    <h3>In Progress</h3>
+                    <div class="Task" id="task3" draggable="true">Make Kanban Board</div>
+                    <div class="Task" id="task4" draggable="true">Family Time</div>
+                    <div class="Task" id="task5" draggable="true">Finish Course</div>
+                </div>
+                <div class="Column" id="complete">
+                    <h3>Complete</h3>
+                    <div class="Task" id="task6" draggable="true">Read Book</div>
+                </div>
+            </div>
+            
+        <script src="card.js"></script>
+    </body>
+
+</html>
