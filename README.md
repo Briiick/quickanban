@@ -41,14 +41,11 @@
 Just type into your command line (while in the project's root directory):
 
 ```bash
-python3.6 -m venv .venv 
-source .venv/bin/activate
+source venv/bin/activate
 pip3 install -r requirements.txt
 export FLASK_APP=app.py
 flask run
 ```
-
-***
 
 ### Unit Testing
 
