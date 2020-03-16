@@ -12,9 +12,9 @@
 <div class="form">
     <form action="/" method="POST">
         <label>Input a new task:</label>
-        <input type="text" class="button_style" name="content" id="content">
+        <input type="text" class="button-style" name="content" id="content">
         <br>
-        <input type="submit" class="button_style" value="Submit">
+        <input type="submit" class="button-style" value="Create Task">
     </form>
 </div>
 
@@ -29,7 +29,7 @@
 
     {% else %}
     <div class="Column" id="notstarted">
-        <h2>Not Started</h2>
+        <h3>Not Started</h3>
 
         {% for task in notstarted %}
         {{ task.content }}

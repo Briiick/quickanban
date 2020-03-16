@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>Task Editoor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -10,9 +11,19 @@
 
     <div class="form">
         <form action="/update/{{task.id}}" method="POST">
-            <input type="text" name="content" id="content" value="{{task.content}}">
-            <input type="submit" value="Update">
+            <input type="text" name="content" id="content" value="{{task.content}}" class="button-style">
+            <div class="dropdown">
+                <button class="dropbtn">Level</button>
+                <div class="dropdown-content">
+                  <a href="#0">Not Started</a>
+                  <a href="#1">In Progress</a>
+                  <a href="#2">Completed</a>
+                </div>
+            </div>
+            <br>
+            <input type="submit" value="Update" class="button-style">
         </form>
     </div>
 </div>
+
 {% endblock %}

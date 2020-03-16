@@ -32,9 +32,12 @@ def index():
 
         # try to commit to database
         try:
-            db.session.add(new_task)
-            db.session.commit()
-            return redirect('/')
+            #if db.and_(new_task.isnot(None), new_task != ''):
+                #return 'Task not long enough!'
+            #else:
+                db.session.add(new_task)
+                db.session.commit()
+                return redirect('/')
         except:
             return 'Problem making task!'
     
