@@ -47,6 +47,27 @@ export FLASK_APP=app.py
 flask run
 ```
 
+### To Reset the Database
+
+Go into your directory. In terminal, type
+
+```bash
+sqlite3 test.db
+.tables
+.exit
+```
+
+Then open Python and populate the database with columns.
+
+```bash
+python3
+```
+```python3
+from app import db
+db.create_all()
+exit()
+```
+
 ### Unit Testing
 
 Unit tests can be run using the following command (while in the project’s root directory):
