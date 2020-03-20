@@ -9,13 +9,24 @@
 <h1>quickanban</h1>
         
 <!-- Form at top of page - this is where you add new tasks-->
-<div class="form">
-    <form action="/" method="POST">
-        <label>Input a new task:</label>
-        <input type="text" class="button_style" name="content" id="content">
-        <br>
-        <input type="submit" class="button_style" value="Submit">
-    </form>
+<p>Input a new task:</p>
+
+<div class="form-group">
+<form action="/" method="POST">
+    <div id="wrapper">
+        <input type="text" name="content" id="content">
+        <div class="dropdown">
+            <button class="dropbtn">Status</button>
+            <div class="dropdown-content">
+            <a href="#0">Not Started</a>
+            <a href="#1">In Progress</a>
+            <a href="#2">Completed</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <input type="submit" value="Create Task" class="submit-button">
+</form>
 </div>
 
 <hr>
@@ -29,7 +40,7 @@
 
     {% else %}
     <div class="Column" id="notstarted">
-        <h2>Not Started</h2>
+        <h3>Not Started</h3>
 
         {% for task in notstarted %}
         {{ task.content }}
