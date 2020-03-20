@@ -1,7 +1,8 @@
 # import necessary libraries
-from flask import Flask, render_template, request, url_for, request, redirect
+from flask import Flask, render_template, request, url_for, request, redirect, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
 
 # start flask app
 app = Flask(__name__)
@@ -15,7 +16,6 @@ db = SQLAlchemy(app) # initialize db
 class Kanban(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    level = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
 
     # return string after creating new element
@@ -32,9 +32,9 @@ def index():
 
         # try to commit to database
         try:
-            #if db.and_(new_task.isnot(None), new_task != ''):
-                #return 'Task not long enough!'
-            #else:
+            if not task_content:
+                return 'Task not long enough, go back!'
+            else:
                 db.session.add(new_task)
                 db.session.commit()
                 return redirect('/')
@@ -66,16 +66,26 @@ def update(id):
     task = Kanban.query.get_or_404(id)
 
     if request.method == 'POST':
-        task.content = request.form['content']
+        task_content = request.form['content']
 
         try:
+            # check task length and make sure not empty
+            if not task_content:
+                return 'Task not long enough, go back!'
+            # otherwise commit and return to home page
             db.session.commit()
             return redirect('/')
         except:
             return 'Issue updating task!'
-
+    # otherwise, if GET, just query
     else:
         return render_template('update.html', task=task)
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico')
+
+# run flask app
 if __name__ == '__main__':
     app.run(debug=True)
