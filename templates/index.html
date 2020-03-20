@@ -1,44 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Quickanban</title>
-        <meta name="author" content="Alexander Bricken">
-        <meta name="description" content="A Quick Kanban Board">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
+{% extends 'base.html' %}
 
-    <body>
-        <h1>QuicKanban</h1>
+{% block head %}
+<title>Task Master</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>quickanban</h1>
         
-        
-        <form action='/add' method='POST'>
-            <label>Input a new task:</label>
-            <input type="text" id="new-task"><br>
-            <input type="button" id="task-add" value="Submit">
-        </form>
+<!-- Form at top of page - this is where you add new tasks-->
+<p>Input a new task:</p>
 
-        <hr>
-
-            <div class="Board">
-                <div class="Column" id="notstarted">
-                    <h3>Not Started</h3>
-                    <div class="Task" id="task1" draggable="true">Wash Dishes</div>
-                    <div class="Task" id="task2" draggable="true">Make Bed</div>
-                </div>
-                <div class="Column" id="inprogress">
-                    <h3>In Progress</h3>
-                    <div class="Task" id="task3" draggable="true">Make Kanban Board</div>
-                    <div class="Task" id="task4" draggable="true">Family Time</div>
-                    <div class="Task" id="task5" draggable="true">Finish Course</div>
-                </div>
-                <div class="Column" id="complete">
-                    <h3>Complete</h3>
-                    <div class="Task" id="task6" draggable="true">Read Book</div>
-                </div>
+<div class="form-group">
+<form action="/" method="POST">
+    <div id="wrapper">
+        <input type="text" name="content" id="content">
+        <div class="dropdown">
+            <button class="dropbtn">Status</button>
+            <div class="dropdown-content">
+            <a href="#0">Not Started</a>
+            <a href="#1">In Progress</a>
+            <a href="#2">Completed</a>
             </div>
-            
-        <script src="card.js"></script>
-    </body>
+        </div>
+    </div>
+    <br>
+    <input type="submit" value="Create Task" class="submit-button">
+</form>
+</div>
 
-</html>
+<hr>
+
+<!-- The board itself -->
+<div class="Board">
+
+    {% if notstarted|length < 1 %}
+    <!-- + inprogress|length + completed|length -->
+    <h3>There are no tasks. Create one!</h3>
+
+    {% else %}
+    <div class="Column" id="notstarted">
+        <h3>Not Started</h3>
+
+        {% for task in notstarted %}
+        {{ task.content }}
+        <a href="/delete/{{ task.id }}" class="link">Delete</a>
+        <a href="/update/{{ task.id }}" class="link">Update</a>
+        <br>
+        {% endfor %}
+
+    </div>
+    <div class="Column" id="inprogress">
+        <h3>In Progress</h3>
+
+        {% for task in inprogress %}
+        {{ task.content }}
+        <a href="" class="link">Delete</a>
+        <a href="" class="link">Update</a>
+        {% endfor %}
+
+    </div>
+    <div class="Column" id="complete">
+        <h3>Complete</h3>
+
+        {% for task in completed %}
+        {{ task.content }}
+        <a href="" class="link">Delete</a>
+        <a href="" class="link">Update</a>
+        {% endfor %}
+
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
