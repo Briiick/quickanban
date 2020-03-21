@@ -1,0 +1,107 @@
+/* TEXT IN PAGE */
+* {
+    font-family: "Courier New", Courier;
+    background-color: black;
+   }
+
+p {
+    font-family: "Courier New", Courier;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    color:white;
+    text-align: center;
+}
+
+h2 {
+    color:white;
+    text-align: center;
+}
+
+h3 {
+    color: black;
+    background-color: white;
+    text-align: center;
+}
+
+h4 {
+    color: white;
+    text-align: center;
+}
+
+/* FORM AT TOP */
+.form-group {
+    text-align: center;
+}
+
+/* div inside form to contain top row */
+#wrapper {
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+#content {
+    color: white;
+    float: center;
+    font-size: 16px;
+    align-self: center;
+    vertical-align:top
+}
+
+.submit-button {
+    color: white;
+    background-color: black;
+    font-size: 16px;
+    align-self: center;
+}
+
+
+/* KANBAN BOARD */
+.link {
+    color: black;
+    background-color: white;
+}
+
+.Column.task {
+    color: black;
+    background-size: 10px;
+    width: 80%;
+    height: 100%;
+    border-radius: 10px;
+    text-align: auto center;
+    display: inline-block;
+    line-height: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.Board {
+    display: table;
+    width: 100%; 
+    table-layout: fixed;
+    border-spacing: 10px;
+    background-color:black;
+}
+
+.Column {
+    display: table-cell;
+    background-color: white;
+    text-align: center;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.Kanban {
+    color: black;
+    text-align: center; 
+}
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+  }
