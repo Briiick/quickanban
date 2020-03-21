@@ -1,76 +1,37 @@
-{% extends 'base.html' %}
+{% extends "bootstrap/base.html" %}
 
-{% block head %}
-<title>Task Master</title>
+{% block title %}
+Demo App
 {% endblock %}
 
-{% block body %}
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
+{% endblock %}
 
-<h1>quickanban</h1>
-        
-<!-- Form at top of page - this is where you add new tasks-->
-<p>Input a new task:</p>
+{% block content %}
 
-<div class="form-group">
-<form action="/" method="POST">
-    <div id="wrapper">
-        <input type="text" name="content" id="content">
-        <div class="dropdown">
-            <button class="dropbtn">Status</button>
-            <div class="dropdown-content">
-            <a href="#0">Not Started</a>
-            <a href="#1">In Progress</a>
-            <a href="#2">Completed</a>
-            </div>
-        </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('board') }}">quickanban</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+        </ul>
+      </div>
     </div>
-    <br>
-    <input type="submit" value="Create Task" class="submit-button">
-</form>
-</div>
+</nav>
 
-<hr>
+    <div class="container">
 
-<!-- The board itself -->
-<div class="Board">
+      <div class="home-header">
+        <h1>quickkanban</h1>
+        <p class="lead">Welcome to a top performing, reliable kanban board.<br> All you need is this.</p>
+      </div>
 
-    {% if notstarted|length < 1 %}
-    <!-- + inprogress|length + completed|length -->
-    <h3>There are no tasks. Create one!</h3>
-
-    {% else %}
-    <div class="Column" id="notstarted">
-        <h3>Not Started</h3>
-
-        {% for task in notstarted %}
-        {{ task.content }}
-        <a href="/delete/{{ task.id }}" class="link">Delete</a>
-        <a href="/update/{{ task.id }}" class="link">Update</a>
-        <br>
-        {% endfor %}
-
-    </div>
-    <div class="Column" id="inprogress">
-        <h3>In Progress</h3>
-
-        {% for task in inprogress %}
-        {{ task.content }}
-        <a href="" class="link">Delete</a>
-        <a href="" class="link">Update</a>
-        {% endfor %}
-
-    </div>
-    <div class="Column" id="complete">
-        <h3>Complete</h3>
-
-        {% for task in completed %}
-        {{ task.content }}
-        <a href="" class="link">Delete</a>
-        <a href="" class="link">Update</a>
-        {% endfor %}
-
-    </div>
-    {% endif %}
-</div>
+    </div><!-- /.container -->
 
 {% endblock %}
