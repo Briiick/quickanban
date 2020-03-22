@@ -14,7 +14,11 @@
 
 ### Layout
 
-![]()
+![](sample1.png)
+
+![](sample2.png)
+
+![](sample3.png)
 
 ***
 
