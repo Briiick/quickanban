@@ -37,21 +37,25 @@ class Kanban(db.Model):
     status = db.Column(db.String(50), nullable=False)
     last_update = db.Column(db.DateTime, default=datetime.utcnow)
 
+# user database
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
 
+# for individual user logins through id
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# login form
 class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=6, max=80)])
     remember = BooleanField('remember me')
 
+# register form
 class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
@@ -60,7 +64,7 @@ class RegisterForm(FlaskForm):
 '''
 KANBAN PAGE
 '''
-
+# index (home) page
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -181,11 +185,14 @@ def leftmove(id, status):
 IMPLEMENTING USER PROFILES (SIGNUP/LOGIN/LOGOUT)
 '''
 
+# register user
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = RegisterForm()
 
+    # check if input valid using LoginManager
     if form.validate_on_submit():
+        # hash password
         hashed_password = generate_password_hash(form.password.data, method='sha256')
         new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(new_user)
@@ -214,6 +221,7 @@ def login():
 
     return render_template('login.html', form=form)
 
+# implement logout
 @app.route('/logout')
 @login_required
 def logout():
@@ -230,4 +238,4 @@ def favicon():
 
 # run flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) # change to false if deploying
