@@ -10,14 +10,18 @@ Login
 <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 {% endblock %}
 
-{% block content %}
+{% block navbar %}
+
+<head>
+  <link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}">
+</head>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="{{ url_for('index') }}">quickanban</a>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
+      <div id="navbar">
         <ul class="nav navbar-nav">
           <li><a href="{{ url_for('login') }}">Login</a></li>
           <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
@@ -25,6 +29,10 @@ Login
       </div>
     </div>
 </nav>
+
+{% endblock %}
+
+{% block content %}
 
 <div class="container">
 
@@ -34,7 +42,7 @@ Login
         {{ wtf.form_field(form.username) }}
         {{ wtf.form_field(form.password) }}
         {{ wtf.form_field(form.remember) }}
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="button" type="submit">Sign in</button>
     </form>
 
 </div> <!-- /container -->

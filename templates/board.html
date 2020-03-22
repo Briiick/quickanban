@@ -1,98 +1,115 @@
 {% extends 'bootstrap/base.html' %}
 
-{% block head %}
-<meta name="author" content="Alexander Bricken">
-<meta name="description" content="A Quick Kanban Board">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% endblock %}
 
 {% block title %}
-Task Master
+quickanban
 {% endblock %}
+
 
 {% block styles %}
 {{super()}}
 <link rel="stylesheet" href="{{url_for('.static', filename='kanban.css')}}">
+<script src="https://kit.fontawesome.com/71f71254fc.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block navbar %}
+
+<head>
+  <link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}">
+</head>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">quickanban</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 {% endblock %}
 
 {% block content %}
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">quickanban</a>
+<div class="upperhead">
+  <h1>{{ name }}'s Board</h1>
+  <h2>
+    <script type="text/javascript">
+          var myDate = new Date(); 
+          document.write(myDate.toDateString()); 
+          document.write("<br/>"); 
+    </script>
+  </h2>
+  <hr>
+  <!-- Form at top of page - this is where you add new tasks-->
+  <p>Input a new task:</p>
+  <div class="form-group">
+  <form action="/board" method="POST">
+      <div id="wrapper">
+          <input type="text" name="content" id="content">
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-        </ul>
-      </div>
-    </div>
-</nav>
-
-<h1>{{ name }}'s Board</h1>
-        
-<!-- Form at top of page - this is where you add new tasks-->
-<p>Input a new task:</p>
-
-<div class="form-group">
-<form action="/board" method="POST">
-    <div id="wrapper">
-        <input type="text" name="content" id="content">
-    </div>
-    <br>
-    <input type="submit" value="Create Task" class="submit-button">
-</form>
+      <br>
+      <input type="submit" value="Create Task" class="submit-button">
+  </form>
+  </div>
+  <hr>
 </div>
+  <!-- The board itself -->
+<div id="bottomhalf">
+  <div class="Board">
 
-<hr>
+      {% if notstarted|length < 1 and inprogress|length < 1 and completed|length < 1 %}
 
-<!-- The board itself -->
-<div class="Board">
+      <div class="header">
+        <h4>There are no tasks. Create one!</h4>
+      </div>
 
-    {% if notstarted|length < 1 and inprogress|length < 1 and completed|length < 1 %}
+      {% else %}
+      <div class="Column" id="notstarted">
+          <h3>Not Started</h3>
+          <hr>
+          {% for task in notstarted %}
+          {{ task.content }}
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
+          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon" style="float:right"></i></a>
+          <br>
+          <br>
+          {% endfor %}
 
-    <h3>There are no tasks. Create one!</h3>
+      </div>
+      <div class="Column" id="inprogress">
+          <h3>In Progress</h3>
+          <hr>
+          {% for task in inprogress %}
+          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon" style="float:left"></i></a>
+          {{ task.content }}
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
+          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon" style="float:right"></i></a>
+          <br>
+          <br>
+          {% endfor %}
 
-    {% else %}
-    <div class="Column" id="notstarted">
-        <h3>Not Started</h3>
+      </div>
+      <div class="Column" id="completed">
+          <h3>Complete</h3>
+          <hr>
+          {% for task in completed %}
+          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon" style="float:left"></i></a>
+          {{ task.content }}
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
+          <br>
+          <br>
+          {% endfor %}
 
-        {% for task in notstarted %}
-        {{ task.content }}
-        <a href="/delete/{{ task.id }}" class="link">Delete</a>
-        <a href="/update/{{ task.id }}" class="link">Update</a>
-        <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link">--></a>
-        <br>
-        {% endfor %}
-
-    </div>
-    <div class="Column" id="inprogress">
-        <h3>In Progress</h3>
-
-        {% for task in inprogress %}
-        {{ task.content }}
-        <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><--</a>
-        <a href="/delete/{{ task.id }}" class="link">Delete</a>
-        <a href="/update/{{ task.id }}" class="link">Update</a>
-        <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link">--></a>
-        <br>
-        {% endfor %}
-
-    </div>
-    <div class="Column" id="completed">
-        <h3>Complete</h3>
-
-        {% for task in completed %}
-        {{ task.content }}
-        <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><--</a>
-        <a href="/delete/{{ task.id }}" class="link">Delete</a>
-        <a href="/update/{{ task.id }}" class="link">Update</a>
-        <br>
-        {% endfor %}
-
-    </div>
-    {% endif %}
+      </div>
+      {% endif %}
+  </div>
 </div>
 
 {% endblock %}

@@ -1,22 +1,21 @@
 {% extends "bootstrap/base.html" %}
 
 {% block title %}
-Demo App
+Home
 {% endblock %}
 
-{% block styles %}
-{{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
-{% endblock %}
+{% block navbar %}
 
-{% block content %}
+<head>
+  <link rel="stylesheet" href="{{url_for('.static', filename='navbar.css')}}">
+</head>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="{{ url_for('board') }}">quickanban</a>
+        <a class="navbar-brand" href="{{ url_for('index') }}">quickanban</a>
       </div>
-      <div id="navbar" class="collapse navbar-collapse">
+      <div id="navbar">
         <ul class="nav navbar-nav">
           <li><a href="{{ url_for('login') }}">Login</a></li>
           <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
@@ -25,13 +24,17 @@ Demo App
     </div>
 </nav>
 
-    <div class="container">
+{% endblock %}
 
-      <div class="home-header">
-        <h1>quickkanban</h1>
-        <p class="lead">Welcome to a top performing, reliable kanban board.<br> All you need is this.</p>
-      </div>
+{% block content %}
 
-    </div><!-- /.container -->
+  <div class="containers">
+
+    <div class="home-header" id="title">
+      <h1>quickanban</h1>
+      <p class="lead">Welcome to the top performing kanban board.<br> All you need is quickanban.</p>
+    </div>
+
+  </div><!-- /.container -->
 
 {% endblock %}

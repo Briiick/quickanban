@@ -14,6 +14,7 @@ import os
 
 # start flask app
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SECRET_KEY'] = 'SecretKeyhehehe'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' 
 #/// for relative path
@@ -32,8 +33,8 @@ TABLES
 # column headers of database
 class Kanban(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(200), nullable=False)
-    status = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.String(60), nullable=False)
+    status = db.Column(db.String(50), nullable=False)
     last_update = db.Column(db.DateTime, default=datetime.utcnow)
 
 class User(UserMixin, db.Model):

@@ -1,18 +1,24 @@
 {% extends 'bootstrap/base.html' %}
 
-{% block head %}
-<title>Task Editor</title>
+{% block title %}
+Update Task
 {% endblock %}
 
-{% block body %}
-<div class="content">
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='kanban.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="form-group">
     <h1 style="text-align: center">Update Task</h1>
     <hr>
     <div class="form">
         <form action="/update/{{task.id}}" method="POST">
             <input type="text" name="content" id="content" value="{{task.content}}" class="button-style">
             <br>
-            <input type="submit" value="Update" class="button-style">
+            <br>
+            <input type="submit" value="Update" id="submit-update">
         </form>
     </div>
 </div>

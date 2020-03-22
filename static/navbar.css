@@ -1,0 +1,49 @@
+* {
+    font-family: "Courier New", Courier;
+    background-color: black;
+    color: white;
+  }  
+
+.navbar navbar-inverse navbar-fixed-top {
+    background-color: black;
+    color:white;
+    font-size:  16px;
+    margin: 0px;
+    min-width: 700px;
+}
+
+.container {
+    background-color: black;
+    color:white;
+    font-size:  16px;
+    position: relative;
+    min-width: 1800px;
+}
+
+.navbar navbar-inverse navbar-fixed-top .container .navbar-header {
+    margin: 0px;
+    color: white;
+    background-color: black;
+    min-width: 1000px;
+}
+
+.nav navbar-nav {
+    min-width: 1000px;
+}
+
+.containers {
+    padding: 0px;
+    position: relative;
+    min-width: 2000px;
+    align-self: center;
+    display: block;
+    background-color: black;
+    color: white;
+}
+
+#title {
+    align-self:  center;
+    position:  relative;
+    display: inline-block;
+    margin:  300px;
+}
