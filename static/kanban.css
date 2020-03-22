@@ -111,7 +111,7 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     background-color: white;
 }
 
-#icon {
+i[id^='icon'] {
     background-color: white;
     color: black;
 }

@@ -73,9 +73,9 @@ quickanban
           <hr>
           {% for task in notstarted %}
           {{ task.content }}
-          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
-          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
-          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon" style="float:right"></i></a>
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon1"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon2"></i></a>
+          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon3" style="float:right"></i></a>
           <br>
           <br>
           {% endfor %}
@@ -85,11 +85,11 @@ quickanban
           <h3>In Progress</h3>
           <hr>
           {% for task in inprogress %}
-          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon" style="float:left"></i></a>
+          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon4" style="float:left"></i></a>
           {{ task.content }}
-          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
-          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
-          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon" style="float:right"></i></a>
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon5"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon6"></i></a>
+          <a href="/rightmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-right" id="icon7" style="float:right"></i></a>
           <br>
           <br>
           {% endfor %}
@@ -99,10 +99,10 @@ quickanban
           <h3>Complete</h3>
           <hr>
           {% for task in completed %}
-          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon" style="float:left"></i></a>
+          <a href="/leftmove/{{ task.id }}/{{ task.status }}" class="link"><i class="fas fa-arrow-alt-circle-left" id="icon8" style="float:left"></i></a>
           {{ task.content }}
-          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon"></i></a>
-          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon"></i></a>
+          <a href="/delete/{{ task.id }}" class="link"><i class="fas fa-trash-alt" id="icon9"></i></a>
+          <a href="/update/{{ task.id }}" class="link"><i class="fas fa-sync-alt" id="icon10"></i></a>
           <br>
           <br>
           {% endfor %}
