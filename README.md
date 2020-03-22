@@ -12,6 +12,12 @@
 
 ***
 
+### Layout
+
+![]()
+
+***
+
 ### Kanban Functionality
 
 **Headers**
@@ -23,16 +29,38 @@
 1. Creating a new task
 2. Moving tasks to different states
 3. Deleting tasks
+4. User System (Sign Up/Log In/Log Out) with restrictions (i.e. password > 6 characters).
+5. SHA256 Hashing Password Protection.
+6. Task Organization By Most Recent Edit.
+7. Rotating Motivational Quotes.
 
 ***
 
 ### Project Structure
 
-
-***
-
-### Extra Features
-
+```
+.
+./.DS_Store
+./requirements.txt
+./__pycache__
+./__pycache__/app.cpython-37.pyc
+./test.py
+./README.md
+./.gitignore
+./static
+./static/update.png
+./static/favicon.ico
+./static/home.css
+./static/kanban.css
+./static/signin.css
+./app.py
+./templates
+./templates/update.html
+./templates/index.html
+./templates/login.html
+./templates/board.html
+./templates/signup.html
+```
 
 ***
 
