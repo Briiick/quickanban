@@ -39,27 +39,25 @@
 ### Project Structure
 
 ```
-.
 ./.DS_Store
 ./requirements.txt
 ./__pycache__
-./__pycache__/app.cpython-37.pyc
-./test.py
+  ./__pycache__/app.cpython-37.pyc
 ./README.md
 ./.gitignore
 ./static
-./static/update.png
-./static/favicon.ico
-./static/home.css
-./static/kanban.css
-./static/signin.css
+  ./static/favicon.ico
+  ./static/navbar.css
+  ./static/kanban.css
+  ./static/signin.css
 ./app.py
 ./templates
-./templates/update.html
-./templates/index.html
-./templates/login.html
-./templates/board.html
-./templates/signup.html
+  ./templates/update.html
+  ./templates/index.html
+  ./templates/login.html
+  ./templates/board.html
+  ./templates/signup.html
+./test.db
 ```
 
 ***
