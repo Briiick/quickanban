@@ -30,13 +30,17 @@
 3. Done
 
 **Features**
-1. Creating a new task
-2. Moving tasks to different states
-3. Deleting tasks
-4. User System (Sign Up/Log In/Log Out) with restrictions (i.e. password > 6 characters).
-5. SHA256 Hashing Password Protection.
-6. Task Organization By Most Recent Edit.
-7. Rotating Motivational Quotes.
+1. Creating a new task.
+2. Moving tasks to different states.
+3. Deleting tasks.
+4. Editing tasks.
+5. Blank tasks aren't accepted.
+6. User system (Sign Up/Login/Logout) with restrictions (i.e. password > 6 characters).
+7. Email validation check.
+8. SHA256 hash password protection.
+9. Task organization by most recent edit.
+10. Personalised board with date.
+
 
 ***
 
@@ -98,11 +102,14 @@ db.create_all()
 exit()
 ```
 
-### Unit Testing
+### Login
 
-Unit tests can be run using the following command (while in the project’s root directory):
+There is already a pre-made account in the database with the following details:
+Username: username
+Password: password
 
-```bash
-python3 -m unittest discover test
-```
+### References
+
+For the login system, https://github.com/PrettyPrinted/building_user_login_system was very helpful.
+
 
