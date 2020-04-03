@@ -72,6 +72,12 @@
 
 ### Installation Guide
 
+Create a vitrual environment to install our packages (venv):
+
+```bash
+python3 -m venv .venv
+```
+
 Just type into your command line (while in the project's root directory):
 
 ```bash
